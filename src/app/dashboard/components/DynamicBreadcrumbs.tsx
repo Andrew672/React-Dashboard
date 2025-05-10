@@ -5,22 +5,27 @@ import { usePathname } from 'next/navigation';
 import * as Separator from '@radix-ui/react-separator';
 import { Text } from '@radix-ui/themes';
 import { dashboardPages } from '@/app/dashboard/routes';
+import {Calendar, Home, LucideIcon} from "lucide-react";
 
 export default function DynamicBreadcrumbs() {
     const pathname = usePathname();
+
+    if (pathname === '/' || pathname === '') {
+        return null; // Ne rien afficher sur la page Dashboard
+    }
 
     const segments = pathname
         .split('/')
         .filter(Boolean);
 
-    // Construit les segments avec leurs href cumulés
     const breadcrumbs = [
-        { label: 'Dashboard', href: '/' },
+        { label: 'Dashboard', href: '/', icon : Home },
         ...segments.map((segment, index) => {
             const href = '/' + segments.slice(0, index + 1).join('/');
             const page = dashboardPages.find((p) => p.path === href);
             const label = page?.title ?? segment.charAt(0).toUpperCase() + segment.slice(1);
-            return { label, href };
+            const icon : LucideIcon = dashboardPages.find((p) => p.path === href)?.icon ?? Calendar;
+            return { label, href, icon };
         }),
     ];
 
@@ -34,20 +39,28 @@ export default function DynamicBreadcrumbs() {
                         {!isLast ? (
                             <>
                                 <Link href={crumb.href}>
-                                    <Text as="span" color="gray" highContrast className="hover:underline">
-                                        {crumb.label}
+                                    <Text
+                                        as="span"
+                                        color="gray"
+                                        highContrast
+                                        className="hover:underline inline-flex items-center gap-1"
+                                    >
+                                        {crumb.icon && <crumb.icon className="w-4 h-4" />} {crumb.label}
                                     </Text>
+
                                 </Link>
-                                <Separator.Root
-                                    decorative
-                                    orientation="vertical"
-                                    className="h-4 w-px bg-gray-400"
-                                />
+                                <span> {'>'} </span>
                             </>
                         ) : (
-                            <Text as="span" weight="medium">
-                                {crumb.label}
+                            <Text
+                                as="span"
+                                color="gray"
+                                highContrast
+                                className="hover:underline inline-flex items-center gap-1"
+                            >
+                                {crumb.icon && <crumb.icon className="w-4 h-4" />} {crumb.label}
                             </Text>
+
                         )}
                     </div>
                 );
