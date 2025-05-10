@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { dashboardPages } from '@/app/dashboard/routes';
-import { Box, Card, Flex, Text, Button, Grid } from '@radix-ui/themes';
+import { Card, Flex, Text, Button, Grid } from '@radix-ui/themes';
 
 export default function WidgetList() {
     return (

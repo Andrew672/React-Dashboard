@@ -13,7 +13,7 @@ export const dashboardPages = [
     },
     {
         title: 'Profile',
-        path: '/profile',
+        path: '/login',
         description: 'Gère ton profil utilisateur',
         icon: User,
     },
