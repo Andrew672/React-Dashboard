@@ -1,14 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth"
+import { signInWithPopup, signOut, onAuthStateChanged, User } from "firebase/auth"
 import { auth, provider } from "@/app/utils/firebase"
 import * as Avatar from "@radix-ui/react-avatar"
 import {Button, Flex} from "@radix-ui/themes";
 import GithubButton from "react-github-login-button";
 
 export default function LoginPage() {
-    const [user, setUser] = useState<any>(null)
+    const [user, setUser] = useState<User | null>(null)
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -48,7 +48,7 @@ export default function LoginPage() {
                         </h1>
                         <Avatar.Root className="AvatarRoot">
                             <Avatar.Image
-                                src={user.photoURL}
+                                src={user.photoURL ?? undefined}
                                 alt={user.displayName || "User avatar"}
                                 className="w-full h-full object-cover"
                             />

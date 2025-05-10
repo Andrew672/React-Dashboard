@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import * as Separator from '@radix-ui/react-separator';
 import { Text } from '@radix-ui/themes';
 import { dashboardPages } from '@/app/dashboard/routes';
 import {Calendar, Home, LucideIcon} from "lucide-react";
