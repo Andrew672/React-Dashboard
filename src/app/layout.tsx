@@ -29,9 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <ThemeSwitcher />
                         </div>
                         <CommandMenu />
-                        <Flex height="10%" px="4" align="center">
-                            <DynamicBreadcrumbs />
-                        </Flex>
+                        <DynamicBreadcrumbs />
                         {children}
                     </div>
                 </AuthGuard>
