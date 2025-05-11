@@ -29,41 +29,44 @@ export default function DynamicBreadcrumbs() {
     ];
 
     return (
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2">
-            {breadcrumbs.map((crumb, index) => {
-                const isLast = index === breadcrumbs.length - 1;
 
-                return (
-                    <div key={crumb.href} className="flex items-center space-x-2">
-                        {!isLast ? (
-                            <>
-                                <Link href={crumb.href}>
-                                    <Text
-                                        as="span"
-                                        color="gray"
-                                        highContrast
-                                        className="hover:underline inline-flex items-center gap-1"
-                                    >
-                                        {crumb.icon && <crumb.icon className="w-4 h-4" />} {crumb.label}
-                                    </Text>
+        <div className="w-full max-w-2xl mx-auto pt-3 px-4">
+            <nav aria-label="Breadcrumb" className="flex items-center space-x-2">
+                {breadcrumbs.map((crumb, index) => {
+                    const isLast = index === breadcrumbs.length - 1;
 
-                                </Link>
-                                <span> {'>'} </span>
-                            </>
-                        ) : (
-                            <Text
-                                as="span"
-                                color="gray"
-                                highContrast
-                                className="hover:underline inline-flex items-center gap-1"
-                            >
-                                {crumb.icon && <crumb.icon className="w-4 h-4" />} {crumb.label}
-                            </Text>
+                    return (
+                        <div key={crumb.href} className="flex items-center space-x-2">
+                            {!isLast ? (
+                                <>
+                                    <Link href={crumb.href}>
+                                        <Text
+                                            as="span"
+                                            color="gray"
+                                            highContrast
+                                            className="hover:underline inline-flex items-center gap-1"
+                                        >
+                                            {crumb.icon && <crumb.icon className="w-4 h-4" />} {crumb.label}
+                                        </Text>
 
-                        )}
-                    </div>
-                );
-            })}
-        </nav>
+                                    </Link>
+                                    <span> {'>'} </span>
+                                </>
+                            ) : (
+                                <Text
+                                    as="span"
+                                    color="gray"
+                                    highContrast
+                                    className="hover:underline inline-flex items-center gap-1"
+                                >
+                                    {crumb.icon && <crumb.icon className="w-4 h-4" />} {crumb.label}
+                                </Text>
+
+                            )}
+                        </div>
+                    );
+                })}
+            </nav>
+        </div>
     );
 }
