@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </div>
                         <CommandMenu />
                         <Flex height="10%" px="4" align="center">
-                            <DynamicBreadcrumbs />
+                                <DynamicBreadcrumbs />
                         </Flex>
                         {children}
                     </div>
